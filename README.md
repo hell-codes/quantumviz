@@ -79,7 +79,7 @@ QuantumViz/
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/quantumviz.git
+git clone https://github.com/hell-codes/quantumviz.git
 
 # Navigate into the folder
 cd quantumviz
