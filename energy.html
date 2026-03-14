@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QuantumViz — Energy Levels</title>
+<link rel="stylesheet" href="css/index.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚛</text></svg>">
+</head>
+<body>
+
+<canvas id="backgroundPhysics"></canvas>
+
+<nav class="navbar">
+  <a class="logo" href="index.html">QuantumViz</a>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links">
+    <li><a href="oscillator.html">Oscillator</a></li>
+    <li><a href="energy.html">Energy Levels</a></li>
+    <li><a href="wavepacket.html">Wave Packet</a></li>
+    <li><a href="schrodinger.html">Schrödinger Cat</a></li>
+    <li><a href="applications.html">Applications</a></li>
+  </ul>
+</nav>
+
+<main class="container">
+
+  <section class="hero">
+    <h1>Quantized Energy Levels</h1>
+    <p>Particles confined in a potential well can only exist at discrete energy levels.
+    Use the buttons to absorb or emit photons and observe quantum transitions.</p>
+  </section>
+
+  <section class="explanation-panel">
+    <h2>Quantum Transition Explanation</h2>
+    <p>
+      The electron is in the <span class="energy-ground">ground state (n = 0)</span> by default —
+      the lowest possible energy level of the quantum harmonic oscillator.<br><br>
+      Energy is <strong>quantized</strong> — particles can only occupy specific discrete levels:
+    </p>
+
+    <div class="formula">
+      Eₙ = ℏω ( n + ½ )
+      <div class="tooltip">
+        <strong>Eₙ</strong> — energy of quantum state n<br>
+        <strong>ℏ</strong> — reduced Planck constant (1.055 × 10⁻³⁴ J·s)<br>
+        <strong>ω</strong> — angular frequency of oscillation<br>
+        <strong>n</strong> — quantum number (0, 1, 2, 3, …)<br><br>
+        The ½ is the <em>zero-point energy</em> — even at n=0, the particle has energy.
+      </div>
+    </div>
+
+    <p>
+      When the electron <span class="energy-absorb">absorbs a photon</span>, it jumps up one level.
+      When it <span class="energy-emit">emits a photon</span>, it drops down and releases light.<br><br>
+      The colour of the photon depends on the energy gap between levels.
+    </p>
+  </section>
+
+  <section>
+    <h2>Quantum Energy Transitions</h2>
+
+    <!-- Live readout -->
+    <div class="readout-bar" style="margin-bottom:16px">
+      <div class="readout-item">
+        <span class="readout-label">Current level</span>
+        <span class="readout-value" id="levelDisplay">n = 0</span>
+      </div>
+      <div class="readout-item">
+        <span class="readout-label">Energy</span>
+        <span class="readout-value" id="energyDisplay">E₀ = 0.5 ℏω</span>
+      </div>
+      <div class="readout-item">
+        <span class="readout-label">Last photon</span>
+        <span class="readout-value" id="photonDisplay">—</span>
+      </div>
+    </div>
+
+    <div class="controls">
+      <button id="exciteBtn">↑ Absorb Energy</button>
+      <button id="relaxBtn" disabled>↓ Emit Photon</button>
+    </div>
+
+    <!-- Absorption spectrum strip -->
+    <p style="font-size:13px;color:#8b90b5;margin-bottom:8px">Emission spectrum — active transition highlighted:</p>
+    <div class="spectrum-strip" id="spectrumStrip">
+      <div class="spectrum-segment" style="background:#ff0000" data-level="1" title="n=0→1  Red"></div>
+      <div class="spectrum-segment" style="background:#ff7700" data-level="2" title="n=1→2  Orange"></div>
+      <div class="spectrum-segment" style="background:#88ff00" data-level="3" title="n=2→3  Green"></div>
+      <div class="spectrum-segment" style="background:#0044ff" data-level="4" title="n=3→4  Blue"></div>
+      <div class="spectrum-segment" style="background:#8800ff" data-level="5" title="n=4→5  Violet"></div>
+    </div>
+
+    <div class="visual-panel">
+      <canvas id="energyCanvas"></canvas>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-grid">
+
+    <div class="footer-brand">
+      <span class="logo-text">⚛ QuantumViz</span>
+      <p>
+        An interactive platform for exploring quantum mechanics through
+        real-time simulations. Built with pure HTML, CSS, and JavaScript —
+        no frameworks, no build tools.
+      </p>
+    </div>
+
+    <div class="footer-col">
+      <h4>Simulations</h4>
+      <ul>
+        <li><a href="oscillator.html">Harmonic Oscillator</a></li>
+        <li><a href="energy.html">Energy Levels</a></li>
+        <li><a href="wavepacket.html">Wave Packet</a></li>
+        <li><a href="schrodinger.html">Schrödinger's Cat</a></li>
+        <li><a href="applications.html">Applications</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Concepts</h4>
+      <ul>
+        <li>Wavefunction ψ(x)</li>
+        <li>Quantized Energy Eₙ = ℏω(n+½)</li>
+        <li>Heisenberg Uncertainty</li>
+        <li>Superposition</li>
+        <li>Wavefunction Collapse</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <span>© 2026 QuantumViz — Quantum Mechanics Visualization Project</span>
+    <span>Built with HTML · CSS · JavaScript · <a href="https://threejs.org" target="_blank">Three.js</a></span>
+  </div>
+</footer>
+
+<script src="js/potential.js"></script>
+<script src="js/background.js"></script>
+<script src="js/nav.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QuantumViz — Schrödinger's Cat</title>
+<link rel="stylesheet" href="css/index.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚛</text></svg>">
+</head>
+<body>
+
+<canvas id="backgroundPhysics"></canvas>
+
+<nav class="navbar">
+  <a class="logo" href="index.html">QuantumViz</a>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links">
+    <li><a href="oscillator.html">Oscillator</a></li>
+    <li><a href="energy.html">Energy Levels</a></li>
+    <li><a href="wavepacket.html">Wave Packet</a></li>
+    <li><a href="schrodinger.html">Schrödinger Cat</a></li>
+    <li><a href="applications.html">Applications</a></li>
+  </ul>
+</nav>
+
+<main class="container">
+
+  <section class="hero">
+    <h1>Schrödinger's Cat Thought Experiment</h1>
+    <p>Erwin Schrödinger's 1935 thought experiment reveals the strangeness of quantum superposition
+    when applied to macroscopic objects.</p>
+  </section>
+
+  <section>
+    <h2>Quantum Superposition</h2>
+    <div class="formula">
+      |ψ⟩ = α|Alive⟩ + β|Dead⟩
+      <div class="tooltip">
+        <strong>|ψ⟩</strong> — the quantum state of the system<br>
+        <strong>α, β</strong> — probability amplitudes (complex numbers)<br>
+        <strong>|α|²</strong> — probability of finding cat alive<br>
+        <strong>|β|²</strong> — probability of finding cat dead<br><br>
+        Before measurement: |α|² + |β|² = 1 (normalisation)<br>
+        After measurement: state collapses to one of the two.
+      </div>
+    </div>
+    <p>Before the box is opened, the system exists in both states simultaneously.
+    Observation forces a definite outcome — <em>wavefunction collapse</em>.</p>
+  </section>
+
+  <section>
+    <h2>Interactive Superposition Simulation</h2>
+
+    <!-- Decay probability control -->
+    <div class="controls" style="margin-bottom:16px">
+      <label>Decay probability = <span class="slider-val" id="decayVal">50</span>%</label>
+      <input type="range" id="decaySlider" min="10" max="90" value="50" step="5">
+    </div>
+
+    <div class="controls">
+      <button id="measureBtn">🔬 Open the Box</button>
+      <button id="resetBtn">↺ Reset Experiment</button>
+    </div>
+
+    <!-- Outcome statistics -->
+    <div class="outcome-counter" id="outcomeCounter">
+      <div class="outcome-item">
+        <div class="outcome-dot" style="background:#34d399"></div>
+        <span>Alive: <strong id="aliveCount">0</strong></span>
+      </div>
+      <div class="outcome-item">
+        <div class="outcome-dot" style="background:#ef4444"></div>
+        <span>Dead: <strong id="deadCount">0</strong></span>
+      </div>
+      <div class="outcome-item">
+        <div class="outcome-dot" style="background:#8fa4ff"></div>
+        <span>Total: <strong id="totalCount">0</strong></span>
+      </div>
+      <div class="outcome-item" id="rateDisplay" style="margin-left:auto;font-size:13px;color:#8b90b5">
+        Run several experiments to see the quantum statistics
+      </div>
+    </div>
+
+    <div class="visual-panel">
+      <canvas id="catCanvas"></canvas>
+    </div>
+  </section>
+
+  <section class="explanation-panel">
+    <h2>Physical Interpretation</h2>
+    <p>
+      • The <strong>box</strong> represents a closed quantum system.<br><br>
+      • The <strong>radioactive atom</strong> has a configurable probability of decaying (set with the slider).<br><br>
+      • If decay occurs, the poison is released and the cat dies.<br><br>
+      • If no decay occurs, the cat remains alive.<br><br>
+      • Before measurement, the system exists in a <strong>superposition of both possibilities</strong>.<br><br>
+      • When the box is opened, the wavefunction collapses to a single definite state.<br><br>
+      • Run many experiments to observe how the outcome statistics converge to the decay probability you set.
+    </p>
+  </section>
+
+  <section>
+    <h2>Why This Thought Experiment Matters</h2>
+    <p>
+      Schrödinger designed this to highlight the paradox between quantum theory and classical intuition.
+      While superposition works perfectly for microscopic particles, applying it to macroscopic objects
+      like cats reveals profound questions about <em>when</em> and <em>why</em> quantum systems collapse.
+    </p>
+    <p style="margin-top:16px">
+      This remains one of the deepest open questions in the foundations of quantum mechanics —
+      connecting to interpretations such as Copenhagen, Many-Worlds, and Decoherence theory.
+    </p>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-grid">
+
+    <div class="footer-brand">
+      <span class="logo-text">⚛ QuantumViz</span>
+      <p>
+        An interactive platform for exploring quantum mechanics through
+        real-time simulations. Built with pure HTML, CSS, and JavaScript —
+        no frameworks, no build tools.
+      </p>
+    </div>
+
+    <div class="footer-col">
+      <h4>Simulations</h4>
+      <ul>
+        <li><a href="oscillator.html">Harmonic Oscillator</a></li>
+        <li><a href="energy.html">Energy Levels</a></li>
+        <li><a href="wavepacket.html">Wave Packet</a></li>
+        <li><a href="schrodinger.html">Schrödinger's Cat</a></li>
+        <li><a href="applications.html">Applications</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Concepts</h4>
+      <ul>
+        <li>Wavefunction ψ(x)</li>
+        <li>Quantized Energy Eₙ = ℏω(n+½)</li>
+        <li>Heisenberg Uncertainty</li>
+        <li>Superposition</li>
+        <li>Wavefunction Collapse</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <span>© 2026 QuantumViz — Quantum Mechanics Visualization Project</span>
+    <span>Built with HTML · CSS · JavaScript · <a href="https://threejs.org" target="_blank">Three.js</a></span>
+  </div>
+</footer>
+
+<script src="js/schrodinger.js"></script>
+<script src="js/background.js"></script>
+<script src="js/nav.js"></script>
+
+</body>
+</html>

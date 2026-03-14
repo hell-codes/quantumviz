@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QuantumViz — Applications</title>
+<link rel="stylesheet" href="css/index.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚛</text></svg>">
+</head>
+<body>
+
+<canvas id="backgroundPhysics"></canvas>
+
+<nav class="navbar">
+  <a class="logo" href="index.html">QuantumViz</a>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links">
+    <li><a href="oscillator.html">Oscillator</a></li>
+    <li><a href="energy.html">Energy Levels</a></li>
+    <li><a href="wavepacket.html">Wave Packet</a></li>
+    <li><a href="schrodinger.html">Schrödinger Cat</a></li>
+    <li><a href="applications.html">Applications</a></li>
+  </ul>
+</nav>
+
+<main class="container">
+
+  <section class="hero">
+    <h1>Applications of Quantum Oscillators</h1>
+    <p>The quantum harmonic oscillator is one of the most fundamental models in physics —
+    underlying ion traps, molecular vibrations, and the quantization of light itself.</p>
+  </section>
+
+  <section>
+    <h2>Ion Traps</h2>
+    <p>Ion traps use electromagnetic fields to confine charged particles. The trapped ion oscillates
+    in discrete energy levels — exactly like the quantum harmonic oscillator you explored.</p>
+    <p style="margin-top:10px">Ion traps are the leading platform for quantum computers and atomic clocks.</p>
+    <div class="visual-panel">
+      <canvas id="ionCanvas"></canvas>
+    </div>
+  </section>
+
+  <section>
+    <h2>Molecular Vibrations</h2>
+    <p>Atoms in a molecule vibrate about their equilibrium positions.
+    These vibrations are quantized — only discrete vibrational modes are allowed.</p>
+    <p style="margin-top:10px">
+      Infrared spectroscopy measures these transitions. The spectrum lines below light up
+      at the vibrational frequency of the bond.
+    </p>
+    <div class="visual-panel">
+      <canvas id="moleculeCanvas"></canvas>
+    </div>
+    <!-- IR Spectrum strip -->
+    <p style="font-size:13px;color:#8b90b5;margin-top:16px;margin-bottom:6px">
+      IR emission spectrum — vibrational frequency highlighted:
+    </p>
+    <div class="spectrum-strip" id="irStrip">
+      <div style="flex:1;background:#800000;opacity:0.3" title="Far IR"></div>
+      <div style="flex:1;background:#cc3300;opacity:0.3" title="Mid IR"></div>
+      <div id="irActive" style="flex:1;background:#ff6600;opacity:1;position:relative" title="Active mode">
+        <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:10px;color:white;white-space:nowrap">Active</div>
+      </div>
+      <div style="flex:1;background:#cc8800;opacity:0.3" title="Near IR"></div>
+      <div style="flex:1;background:#ffcc00;opacity:0.3" title="Near IR edge"></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Quantum Optics</h2>
+    <p>Light trapped in an optical cavity behaves as a quantum harmonic oscillator.
+    The electromagnetic field is quantized into discrete photons — photon number states.</p>
+    <p style="margin-top:10px">
+      Use the button to inject photons into the cavity and observe the quantized field mode.
+    </p>
+    <div class="controls">
+      <button id="addPhotonBtn">+ Add Photon</button>
+      <button id="resetPhotonBtn">Reset Cavity</button>
+      <span style="font-size:14px;color:#9fb3ff">Photon number: <strong id="photonCount">n = 1</strong></span>
+    </div>
+    <div class="visual-panel">
+      <canvas id="photonCanvas"></canvas>
+    </div>
+  </section>
+
+  <section class="explanation-panel">
+    <h2>Why Quantum Oscillators Are Important</h2>
+    <p>
+      • Every physical system near equilibrium behaves like a harmonic oscillator to first approximation.<br><br>
+      • Quantized oscillator models explain atomic vibrations, lattice phonons in solids, and photon fields.<br><br>
+      • Discrete energy levels are fundamental to quantum technologies — lasers, MRI, quantum computers.<br><br>
+      • Understanding oscillator physics is the doorway to quantum field theory, where every particle
+      in the universe is an excitation of a quantum field oscillator.
+    </p>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-grid">
+
+    <div class="footer-brand">
+      <span class="logo-text">⚛ QuantumViz</span>
+      <p>
+        An interactive platform for exploring quantum mechanics through
+        real-time simulations. Built with pure HTML, CSS, and JavaScript —
+        no frameworks, no build tools.
+      </p>
+    </div>
+
+    <div class="footer-col">
+      <h4>Simulations</h4>
+      <ul>
+        <li><a href="oscillator.html">Harmonic Oscillator</a></li>
+        <li><a href="energy.html">Energy Levels</a></li>
+        <li><a href="wavepacket.html">Wave Packet</a></li>
+        <li><a href="schrodinger.html">Schrödinger's Cat</a></li>
+        <li><a href="applications.html">Applications</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Concepts</h4>
+      <ul>
+        <li>Wavefunction ψ(x)</li>
+        <li>Quantized Energy Eₙ = ℏω(n+½)</li>
+        <li>Heisenberg Uncertainty</li>
+        <li>Superposition</li>
+        <li>Wavefunction Collapse</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <span>© 2026 QuantumViz — Quantum Mechanics Visualization Project</span>
+    <span>Built with HTML · CSS · JavaScript · <a href="https://threejs.org" target="_blank">Three.js</a></span>
+  </div>
+</footer>
+
+<script src="js/applications.js"></script>
+<script src="js/background.js"></script>
+<script src="js/nav.js"></script>
+
+</body>
+</html>

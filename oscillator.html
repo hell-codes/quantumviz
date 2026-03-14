@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QuantumViz — Harmonic Oscillator</title>
+<link rel="stylesheet" href="css/index.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚛</text></svg>">
+</head>
+<body>
+
+<canvas id="backgroundPhysics"></canvas>
+
+<nav class="navbar">
+  <a class="logo" href="index.html">QuantumViz</a>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links">
+    <li><a href="oscillator.html">Oscillator</a></li>
+    <li><a href="energy.html">Energy Levels</a></li>
+    <li><a href="wavepacket.html">Wave Packet</a></li>
+    <li><a href="schrodinger.html">Schrödinger Cat</a></li>
+    <li><a href="applications.html">Applications</a></li>
+  </ul>
+</nav>
+
+<main class="container">
+
+  <section class="hero">
+    <h1>Quantum Harmonic Oscillator</h1>
+    <p>Explore wavefunctions, probability densities, and quantized energy levels. 
+       Use the slider to switch quantum states and measure particle position.</p>
+  </section>
+
+  <section>
+    <h2>Potential Well &amp; Energy Levels</h2>
+    <p>The highlighted level tracks the quantum number you select below. 
+       Classical turning points (dashed lines) mark where a classical particle would reverse.</p>
+    <div class="visual-panel">
+      <canvas id="energyCanvas"></canvas>
+    </div>
+  </section>
+
+  <section>
+    <div class="graph-header">
+      <h2>Wavefunction ψ(x)</h2>
+      <div class="controls">
+        <label>n = <span class="slider-val" id="nValue">0</span></label>
+        <input type="range" id="nSlider" min="0" max="5" value="0" step="1">
+        <label>Scale</label>
+        <input type="range" id="scaleSlider" min="50" max="200" value="120" step="1">
+        <button id="pauseBtn">⏸ Pause</button>
+        <button id="measureBtn">⚡ Measure</button>
+      </div>
+    </div>
+
+    <div class="readout-bar">
+      <div class="readout-item">
+        <span class="readout-label">Quantum number</span>
+        <span class="readout-value" id="ro-n">n = 0</span>
+      </div>
+      <div class="readout-item">
+        <span class="readout-label">Energy</span>
+        <span class="readout-value" id="ro-e">E₀ = ½ ℏω</span>
+      </div>
+      <div class="readout-item">
+        <span class="readout-label">Nodes</span>
+        <span class="readout-value" id="ro-nodes">0</span>
+      </div>
+      <div class="readout-item">
+        <span class="readout-label">State colour</span>
+        <span class="readout-value" id="ro-color" style="font-size:13px">—</span>
+      </div>
+    </div>
+
+    <div class="visual-panel">
+      <canvas id="waveCanvas"></canvas>
+    </div>
+  </section>
+
+  <section>
+    <h2>Probability Density |ψ(x)|²</h2>
+    <p>The shaded area shows where the particle is most likely to be found. 
+       The filled region makes it easy to see how peaks shift with quantum number n.</p>
+    <div class="visual-panel">
+      <canvas id="probCanvas"></canvas>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-grid">
+
+    <div class="footer-brand">
+      <span class="logo-text">⚛ QuantumViz</span>
+      <p>
+        An interactive platform for exploring quantum mechanics through
+        real-time simulations. Built with pure HTML, CSS, and JavaScript —
+        no frameworks, no build tools.
+      </p>
+    </div>
+
+    <div class="footer-col">
+      <h4>Simulations</h4>
+      <ul>
+        <li><a href="oscillator.html">Harmonic Oscillator</a></li>
+        <li><a href="energy.html">Energy Levels</a></li>
+        <li><a href="wavepacket.html">Wave Packet</a></li>
+        <li><a href="schrodinger.html">Schrödinger's Cat</a></li>
+        <li><a href="applications.html">Applications</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Concepts</h4>
+      <ul>
+        <li>Wavefunction ψ(x)</li>
+        <li>Quantized Energy Eₙ = ℏω(n+½)</li>
+        <li>Heisenberg Uncertainty</li>
+        <li>Superposition</li>
+        <li>Wavefunction Collapse</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <span>© 2026 QuantumViz — Quantum Mechanics Visualization Project</span>
+    <span>Built with HTML · CSS · JavaScript · <a href="https://threejs.org" target="_blank">Three.js</a></span>
+  </div>
+</footer>
+
+<script src="js/oscillator.js"></script>
+<script src="js/background.js"></script>
+<script src="js/nav.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quantum Mechanics Visualizer</title>
+<link rel="stylesheet" href="css/index.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚛</text></svg>">
+</head>
+<body>
+
+<canvas id="backgroundPhysics"></canvas>
+
+
+<nav class="navbar">
+  <a class="logo" href="index.html">QuantumViz</a>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links">
+    <li><a href="oscillator.html">Oscillator</a></li>
+    <li><a href="energy.html">Energy Levels</a></li>
+    <li><a href="wavepacket.html">Wave Packet</a></li>
+    <li><a href="schrodinger.html">Schrödinger Cat</a></li>
+    <li><a href="applications.html">Applications</a></li>
+  </ul>
+</nav>
+
+
+<main class="container">
+
+  <section class="hero">
+    <h1>Quantum Mechanics Visualization Platform</h1>
+    <p>
+      An interactive platform designed to demonstrate fundamental concepts
+      of quantum mechanics through simulations and visual animations.
+    </p>
+  </section>
+
+  <div class="nav-cards">
+    <a class="nav-card" href="oscillator.html" style="--accent:#8fa4ff">
+      <h3>Harmonic Oscillator</h3>
+      <p>Explore wavefunctions ψ(x) and probability densities for quantum states n = 0–5. 
+         Measure particle position and see energy levels live.</p>
+      <span class="card-arrow">Explore →</span>
+    </a>
+    <a class="nav-card" href="energy.html" style="--accent:#00eeff">
+      <h3>Energy Levels</h3>
+      <p>Excite and relax an electron between quantized energy levels. 
+         Watch photon emission and absorption in real time with colour-coded photons.</p>
+      <span class="card-arrow">Explore →</span>
+    </a>
+    <a class="nav-card" href="wavepacket.html" style="--accent:#88ff88">
+      <h3>Wave Packet Evolution</h3>
+      <p>See how a quantum particle's wave packet spreads over time due to dispersion. 
+         Control width σ and momentum k to observe the uncertainty principle.</p>
+      <span class="card-arrow">Explore →</span>
+    </a>
+    <a class="nav-card" href="schrodinger.html" style="--accent:#ff88cc">
+      <h3>Schrödinger's Cat</h3>
+      <p>Simulate the famous thought experiment. 
+        Observe wavefunction collapse on measurement and track outcome statistics across many experiments.</p>
+      <span class="card-arrow">Explore →</span>
+    </a>
+    <a class="nav-card" href="applications.html" style="--accent:#ffaa44">
+      <h3>Real-World Applications</h3>
+      <p>See quantum oscillators in action — ion traps, molecular vibrations, 
+         and optical cavities — the technology behind quantum computers.</p>
+      <span class="card-arrow">Explore →</span>
+    </a>
+  </div>
+
+  <section>
+    <h2>Wave–Particle Duality</h2>
+    <p>
+      Quantum particles exhibit both particle-like and wave-like behaviour.
+      The wavefunction ψ(x) describes the quantum state of the particle.
+    </p>
+    <div class="formula" title="Probability density">
+      |ψ(x)|² → Probability Density
+      <div class="tooltip">
+        <strong>|ψ(x)|²</strong> — the probability density function.<br>
+        Integrating over any region gives the probability of finding the particle there.<br><br>
+        <strong>ψ(x)</strong> — the wavefunction (complex-valued)<br>
+        <strong>|·|²</strong> — modulus squared (removes complex phase)
+      </div>
+    </div>
+    <div class="visual-panel">
+      <div class="canvas-container">
+        <canvas id="waveCanvas"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Atomic Model Visualization</h2>
+    <p>
+      Electrons occupy orbitals around the nucleus. The animation below
+      represents electrons moving through multiple quantum shells.
+    </p>
+    <div class="visual-panel">
+      <div class="canvas-container">
+        <canvas id="atomCanvas"></canvas>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-grid">
+
+    <div class="footer-brand">
+      <span class="logo-text">⚛ QuantumViz</span>
+      <p>
+        An interactive platform for exploring quantum mechanics through
+        real-time simulations. Built with pure HTML, CSS, and JavaScript —
+        no frameworks, no build tools.
+      </p>
+    </div>
+
+    <div class="footer-col">
+      <h4>Simulations</h4>
+      <ul>
+        <li><a href="oscillator.html">Harmonic Oscillator</a></li>
+        <li><a href="energy.html">Energy Levels</a></li>
+        <li><a href="wavepacket.html">Wave Packet</a></li>
+        <li><a href="schrodinger.html">Schrödinger's Cat</a></li>
+        <li><a href="applications.html">Applications</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Concepts</h4>
+      <ul>
+        <li>Wavefunction ψ(x)</li>
+        <li>Quantized Energy Eₙ = ℏω(n+½)</li>
+        <li>Heisenberg Uncertainty</li>
+        <li>Superposition</li>
+        <li>Wavefunction Collapse</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <span>© 2026 QuantumViz — Quantum Mechanics Visualization Project</span>
+    <span>Built with HTML · CSS · JavaScript · <a href="https://threejs.org" target="_blank">Three.js</a></span>
+  </div>
+</footer>
+
+<script src="js/homeAnimations.js"></script>
+<script src="js/nav.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QuantumViz — Wave Packet</title>
+<link rel="stylesheet" href="css/index.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚛</text></svg>">
+</head>
+<body>
+
+<canvas id="backgroundPhysics"></canvas>
+
+<nav class="navbar">
+  <a class="logo" href="index.html">QuantumViz</a>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links">
+    <li><a href="oscillator.html">Oscillator</a></li>
+    <li><a href="energy.html">Energy Levels</a></li>
+    <li><a href="wavepacket.html">Wave Packet</a></li>
+    <li><a href="schrodinger.html">Schrödinger Cat</a></li>
+    <li><a href="applications.html">Applications</a></li>
+  </ul>
+</nav>
+
+<main class="container">
+
+  <section class="hero">
+    <h1>Wave Packet Evolution</h1>
+    <p>A wave packet is a localized combination of many waves representing a quantum particle.
+    Watch it spread due to dispersion — a direct consequence of the uncertainty principle.</p>
+  </section>
+
+  <section>
+    <h2>Heisenberg Uncertainty Principle</h2>
+    <div class="formula">
+      Δx · Δp ≥ ℏ / 2
+      <div class="tooltip">
+        <strong>Δx</strong> — position uncertainty (spread of the packet)<br>
+        <strong>Δp</strong> — momentum uncertainty (spread in k-space)<br>
+        <strong>ℏ/2</strong> — minimum possible product (≈ 5.27 × 10⁻³⁵ J·s)<br><br>
+        A narrow packet (small Δx) requires a wide range of momenta (large Δp), so it spreads faster.
+        Drag the σ slider to see this in action.
+      </div>
+    </div>
+    <p>If the particle is highly localized (small Δx), its momentum uncertainty must be large —
+    causing the wave packet to spread faster. Adjust σ to see this directly.</p>
+  </section>
+
+  <section>
+    <h2>Wave Packet Simulation</h2>
+
+    <div class="controls">
+      <label>Width σ = <span class="slider-val" id="sigmaVal">80</span></label>
+      <input type="range" id="sigmaSlider" min="20" max="200" value="80" step="1">
+
+      <label>Momentum k = <span class="slider-val" id="kVal">5</span></label>
+      <input type="range" id="kSlider" min="1" max="10" value="5" step="1">
+
+      <label>Speed = <span class="slider-val" id="speedVal">4</span></label>
+      <input type="range" id="speedSlider" min="1" max="10" value="4" step="1">
+
+      <button id="resetPacket">↺ Reset</button>
+    </div>
+
+    <!-- Uncertainty readout -->
+    <div class="readout-bar" style="margin-bottom:4px">
+      <div class="readout-item">
+        <span class="readout-label">Position spread Δx</span>
+        <span class="readout-value" id="ro-dx">—</span>
+      </div>
+      <div class="readout-item">
+        <span class="readout-label">Momentum spread Δp</span>
+        <span class="readout-value" id="ro-dp">—</span>
+      </div>
+      <div class="readout-item">
+        <span class="readout-label">Δx · Δp</span>
+        <span class="readout-value" id="ro-product">—</span>
+      </div>
+      <div class="readout-item">
+        <span class="readout-label">≥ ℏ/2 ?</span>
+        <span class="readout-value" id="ro-check">—</span>
+      </div>
+    </div>
+
+    <div class="visual-panel">
+      <canvas id="waveCanvas"></canvas>
+    </div>
+  </section>
+
+  <section>
+    <h2>Probability Density |ψ(x,t)|²</h2>
+    <p>The shaded envelope spreads over time as different momentum components travel at different speeds (quantum dispersion).</p>
+    <div class="visual-panel">
+      <canvas id="probCanvas"></canvas>
+    </div>
+  </section>
+
+  <section>
+    <h2>Momentum Space |ψ̃(k)|²</h2>
+    <p>The Fourier transform of the wave packet. Notice: narrower position packet → wider momentum distribution.
+    This is the uncertainty principle made visible in two spaces simultaneously.</p>
+    <div class="visual-panel">
+      <canvas id="momCanvas"></canvas>
+    </div>
+  </section>
+
+  <section class="explanation-panel">
+    <h2>Physical Interpretation</h2>
+    <p>
+      • The <strong>wave peak</strong> is the most probable position.<br><br>
+      • The <strong>filled envelope</strong> is the overall probability distribution.<br><br>
+      • As time increases, the packet spreads — different k-components travel at slightly different velocities.
+      This is <strong>quantum dispersion</strong>.<br><br>
+      • Narrowing σ (smaller Δx) instantly widens the momentum-space peak (larger Δp),
+      enforcing Heisenberg's principle in real time.
+    </p>
+  </section>
+
+  <section>
+    <h2>3D Probability Cloud</h2>
+    <p>Regions with higher point density indicate a higher probability of finding the particle there.</p>
+    <div class="visual-panel">
+      <div id="threeContainer"></div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-grid">
+
+    <div class="footer-brand">
+      <span class="logo-text">⚛ QuantumViz</span>
+      <p>
+        An interactive platform for exploring quantum mechanics through
+        real-time simulations. Built with pure HTML, CSS, and JavaScript —
+        no frameworks, no build tools.
+      </p>
+    </div>
+
+    <div class="footer-col">
+      <h4>Simulations</h4>
+      <ul>
+        <li><a href="oscillator.html">Harmonic Oscillator</a></li>
+        <li><a href="energy.html">Energy Levels</a></li>
+        <li><a href="wavepacket.html">Wave Packet</a></li>
+        <li><a href="schrodinger.html">Schrödinger's Cat</a></li>
+        <li><a href="applications.html">Applications</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Concepts</h4>
+      <ul>
+        <li>Wavefunction ψ(x)</li>
+        <li>Quantized Energy Eₙ = ℏω(n+½)</li>
+        <li>Heisenberg Uncertainty</li>
+        <li>Superposition</li>
+        <li>Wavefunction Collapse</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <span>© 2026 QuantumViz — Quantum Mechanics Visualization Project</span>
+    <span>Built with HTML · CSS · JavaScript · <a href="https://threejs.org" target="_blank">Three.js</a></span>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/three@0.158.0/build/three.min.js"></script>
+<script src="js/wavepacket.js"></script>
+<script src="js/wavepacket3d.js"></script>
+<script src="js/background.js"></script>
+<script src="js/nav.js"></script>
+
+</body>
+</html>
